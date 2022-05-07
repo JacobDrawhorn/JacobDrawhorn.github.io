@@ -1,0 +1,50 @@
+[
+    {
+        "title":"C# and .NET",
+        "icon" :"fab fa-4x fa-microsoft"
+    },
+    {
+        "title":"DevOps",
+        "icon" :"fab fa-4x fa-microsoft"
+    },
+    {
+        "title":"Git",
+        "icon" :"fab fa-4x fa-git"
+    },
+    {
+        "title":"Git Hub",
+        "icon" :"fab fa-4x fa-github-alt"
+    },
+    {
+        "title":"CSS3 & SCSS",
+        "icon" :"fab fa-4x fa-css3-alt"
+    },
+    {
+        "title":"Python",
+        "icon" :"fab fa-4x fa-python"
+    },
+    {
+        "title":"UI/UX",
+        "icon" :"fas fa-4x fa-brush"
+    },
+    {
+        "title":"MySql",
+        "icon" :"fas fa-4x fa-database"
+    },
+    {
+        "title":"Sqlite3",
+        "icon" :"fas fa-4x fa-database"
+    },
+    {
+        "title":"Sql",
+        "icon" :"fas fa-4x fa-database"
+    },
+    {
+        "title":"JavaScript",
+        "icon" :"fab fa-4x fa-js"
+    },
+    {
+        "title":"Angular 13",
+        "icon" :"fab fa-4x fa-angular"
+    }
+]

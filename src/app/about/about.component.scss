@@ -1,0 +1,64 @@
+@import "mixins";
+@import "variables";
+
+.about {
+  height: 100vh;
+  @include flex-container(row);
+  background-image: url('../../assets/img/outerspace-6.gif');
+  image-rendering: auto;
+  background-repeat: no-repeat;
+  image-rendering: auto;
+  filter: none; 
+  -webkit-filter: blur(0px); 
+  -moz-filter: blur(0px); 
+  -ms-filter: blur(0px);
+  filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
+  background-size: cover;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  
+  
+
+
+
+  &__details {
+    flex-basis: 50%;
+    color: $white;
+  }
+
+  &__title {
+    color: $white;
+    font-size: $font-size-h1;
+  }
+
+  &__paragraph {
+    color: #d4e0f7;
+    font-size: $paragraph;
+    margin-bottom: 25px;
+    font-size: $font-size-h5;
+  }
+
+  &__img {
+    border-radius: 50%;
+    height: auto;
+    max-width: 250px;
+    box-shadow: 10px -10px $box-shadow;
+    transition: 1s ease-in;
+  }
+}
+
+@include mq(sm, max){
+  .about {
+    &__img {
+      max-width: 160px;
+      transition: 1s ease;
+    }
+
+    &__details {
+      flex-basis: 70%;
+      @include flex-container(column);
+    }
+  }
+}

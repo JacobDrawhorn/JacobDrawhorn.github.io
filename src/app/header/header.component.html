@@ -1,0 +1,10 @@
+<header>
+  <nav class="menu">
+    <ol class="nav nav--hightlighted" [ngClass]="{'nav__open':isNavOpen}">
+      <li class="menu-item"><a href="#"> Jacob Drawhorn</a></li>
+      <li class="menu-item"><a (click)="scroll('about')">About</a></li>
+      <li class="menu-item"><a (click)="scroll('skill')">Skills</a></li>
+      <li class="menu-item"><a (click)="scroll('contato')">Contact</a></li>
+    </ol>
+  </nav>
+</header>
