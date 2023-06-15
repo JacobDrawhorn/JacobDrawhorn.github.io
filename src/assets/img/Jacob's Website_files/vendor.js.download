@@ -12376,7 +12376,7 @@ const DOCUMENT = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('
  * `PlatformLocation` encapsulates all calls to DOM APIs, which allows the Router to be
  * platform-agnostic.
  * This means that we can have different implementation of `PlatformLocation` for the different
- * platforms that Angular supports. For example, `@angular/platform-browser` provides an
+ * platforms that Angular supports. For example, `@angular/core` provides an
  * implementation specific to the browser environment, while `@angular/platform-server` provides
  * one suitable for use with server-side rendering.
  *
@@ -22143,7 +22143,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "PlatformRef": () => (/* binding */ PlatformRef),
 /* harmony export */   "Query": () => (/* binding */ Query),
 /* harmony export */   "QueryList": () => (/* binding */ QueryList),
-/* harmony export */   "ReflectiveInjector": () => (/* binding */ ReflectiveInjector),
+/* harmony export */   "Injector.create": () => (/* binding */ Injector.create),
 /* harmony export */   "ReflectiveKey": () => (/* binding */ ReflectiveKey),
 /* harmony export */   "Renderer2": () => (/* binding */ Renderer2),
 /* harmony export */   "RendererFactory2": () => (/* binding */ RendererFactory2),
@@ -26494,7 +26494,7 @@ function getCompilerFacade(request) {
                 `JIT compilation is discouraged for production use-cases! Consider using AOT mode instead.\n`;
         }
         message +=
-            `Alternatively, the JIT compiler should be loaded by bootstrapping using '@angular/platform-browser-dynamic' or '@angular/platform-server',\n`;
+            `Alternatively, the JIT compiler should be loaded by bootstrapping using '@angular/core-dynamic' or '@angular/platform-server',\n`;
         message +=
             `or manually provide the compiler with 'import "@angular/compiler";' before bootstrapping.`;
         throw new Error(message);
@@ -36156,17 +36156,17 @@ function mixingMultiProvidersWithRegularProvidersError(provider1, provider2) {
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- * A unique object used for retrieving items from the {@link ReflectiveInjector}.
+ * A unique object used for retrieving items from the {@link Injector.create}.
  *
  * Keys have:
  * - a system-wide unique `id`.
  * - a `token`.
  *
- * `Key` is used internally by {@link ReflectiveInjector} because its system-wide unique `id` allows
+ * `Key` is used internally by {@link Injector.create} because its system-wide unique `id` allows
  * the
  * injector to store created objects in a more efficient way.
  *
- * `Key` should not be created directly. {@link ReflectiveInjector} creates keys automatically when
+ * `Key` should not be created directly. {@link Injector.create} creates keys automatically when
  * resolving
  * providers.
  *
@@ -36523,7 +36523,7 @@ const UNDEFINED = {};
  *   constructor(public engine:Engine) {}
  * }
  *
- * var injector = ReflectiveInjector.resolveAndCreate([Car, Engine]);
+ * var injector = Injector.create.resolveAndCreate([Car, Engine]);
  * var car = injector.get(Car);
  * expect(car instanceof Car).toBe(true);
  * expect(car.engine instanceof Engine).toBe(true);
@@ -36537,7 +36537,7 @@ const UNDEFINED = {};
  * @deprecated from v5 - slow and brings in a lot of code, Use `Injector.create` instead.
  * @publicApi
  */
-class ReflectiveInjector {
+class Injector.create {
     /**
      * Turns an array of provider definitions into an array of resolved providers.
      *
@@ -36557,7 +36557,7 @@ class ReflectiveInjector {
      *   constructor(public engine:Engine) {}
      * }
      *
-     * var providers = ReflectiveInjector.resolve([Car, [[Engine]]]);
+     * var providers = Injector.create.resolve([Car, [[Engine]]]);
      *
      * expect(providers.length).toEqual(2);
      *
@@ -36593,13 +36593,13 @@ class ReflectiveInjector {
      *   constructor(public engine:Engine) {}
      * }
      *
-     * var injector = ReflectiveInjector.resolveAndCreate([Car, Engine]);
+     * var injector = Injector.create.resolveAndCreate([Car, Engine]);
      * expect(injector.get(Car) instanceof Car).toBe(true);
      * ```
      */
     static resolveAndCreate(providers, parent) {
-        const ResolvedReflectiveProviders = ReflectiveInjector.resolve(providers);
-        return ReflectiveInjector.fromResolvedProviders(ResolvedReflectiveProviders, parent);
+        const ResolvedReflectiveProviders = Injector.create.resolve(providers);
+        return Injector.create.fromResolvedProviders(ResolvedReflectiveProviders, parent);
     }
     /**
      * Creates an injector from previously resolved providers.
@@ -36619,16 +36619,16 @@ class ReflectiveInjector {
      *   constructor(public engine:Engine) {}
      * }
      *
-     * var providers = ReflectiveInjector.resolve([Car, Engine]);
-     * var injector = ReflectiveInjector.fromResolvedProviders(providers);
+     * var providers = Injector.create.resolve([Car, Engine]);
+     * var injector = Injector.create.fromResolvedProviders(providers);
      * expect(injector.get(Car) instanceof Car).toBe(true);
      * ```
      */
     static fromResolvedProviders(providers, parent) {
-        return new ReflectiveInjector_(providers, parent);
+        return new Injector.create_(providers, parent);
     }
 }
-class ReflectiveInjector_ {
+class Injector.create_ {
     /**
      * Private
      */
@@ -36649,16 +36649,16 @@ class ReflectiveInjector_ {
         return this._getByKey(ReflectiveKey.get(token), null, notFoundValue);
     }
     resolveAndCreateChild(providers) {
-        const ResolvedReflectiveProviders = ReflectiveInjector.resolve(providers);
+        const ResolvedReflectiveProviders = Injector.create.resolve(providers);
         return this.createChildFromResolved(ResolvedReflectiveProviders);
     }
     createChildFromResolved(providers) {
-        const inj = new ReflectiveInjector_(providers);
+        const inj = new Injector.create_(providers);
         inj.parent = this;
         return inj;
     }
     resolveAndInstantiate(provider) {
-        return this.instantiateResolved(ReflectiveInjector.resolve([provider])[0]);
+        return this.instantiateResolved(Injector.create.resolve([provider])[0]);
     }
     instantiateResolved(provider) {
         return this._instantiateProvider(provider);
@@ -36717,7 +36717,7 @@ class ReflectiveInjector_ {
         return this._getByKey(dep.key, dep.visibility, dep.optional ? null : THROW_IF_NOT_FOUND);
     }
     _getByKey(key, visibility, notFoundValue) {
-        if (key === ReflectiveInjector_.INJECTOR_KEY) {
+        if (key === Injector.create_.INJECTOR_KEY) {
             return this;
         }
         if (visibility instanceof Self) {
@@ -36761,7 +36761,7 @@ class ReflectiveInjector_ {
         else {
             inj = this;
         }
-        while (inj instanceof ReflectiveInjector_) {
+        while (inj instanceof Injector.create_) {
             const inj_ = inj;
             const obj = inj_._getObjByKeyId(key.id);
             if (obj !== UNDEFINED)
@@ -36778,13 +36778,13 @@ class ReflectiveInjector_ {
     get displayName() {
         const providers = _mapProviders(this, (b) => ' "' + b.key.displayName + '" ')
             .join(', ');
-        return `ReflectiveInjector(providers: [${providers}])`;
+        return `Injector.create(providers: [${providers}])`;
     }
     toString() {
         return this.displayName;
     }
 }
-ReflectiveInjector_.INJECTOR_KEY = ( /* @__PURE__ */ReflectiveKey.get(Injector));
+Injector.create_.INJECTOR_KEY = ( /* @__PURE__ */ReflectiveKey.get(Injector));
 function _mapProviders(injector, fn) {
     const res = [];
     for (let i = 0; i < injector._providers.length; ++i) {
@@ -47381,7 +47381,7 @@ function getGlobalLocale() {
  *
  * ```typescript
  * import { LOCALE_ID } from '@angular/core';
- * import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+ * import { platformBrowserDynamic } from '@angular/core-dynamic';
  * import { AppModule } from './app/app.module';
  *
  * platformBrowserDynamic().bootstrapModule(AppModule, {
@@ -47423,7 +47423,7 @@ const LOCALE_ID = new InjectionToken('LocaleId', {
  * ### Example
  *
  * ```typescript
- * import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+ * import { platformBrowserDynamic } from '@angular/core-dynamic';
  * import { AppModule } from './app/app.module';
  *
  * platformBrowserDynamic().bootstrapModule(AppModule, {
@@ -47448,7 +47448,7 @@ const DEFAULT_CURRENCY_CODE = new InjectionToken('DefaultCurrencyCode', {
  *
  * ```typescript
  * import { TRANSLATIONS } from '@angular/core';
- * import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+ * import { platformBrowserDynamic } from '@angular/core-dynamic';
  * import { AppModule } from './app/app.module';
  *
  * // content of your translation file
@@ -47473,7 +47473,7 @@ const TRANSLATIONS = new InjectionToken('Translations');
  *
  * ```typescript
  * import { TRANSLATIONS_FORMAT } from '@angular/core';
- * import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+ * import { platformBrowserDynamic } from '@angular/core-dynamic';
  * import { AppModule } from './app/app.module';
  *
  * platformBrowserDynamic().bootstrapModule(AppModule, {
@@ -47497,7 +47497,7 @@ const TRANSLATIONS_FORMAT = new InjectionToken('TranslationsFormat');
  * ### Example
  * ```typescript
  * import { MissingTranslationStrategy } from '@angular/core';
- * import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+ * import { platformBrowserDynamic } from '@angular/core-dynamic';
  * import { AppModule } from './app/app.module';
  *
  * platformBrowserDynamic().bootstrapModule(AppModule, {
@@ -51162,7 +51162,7 @@ if (typeof ngDevMode !== 'undefined' && ngDevMode) {
 
 /***/ 3598:
 /*!************************************************************************!*\
-  !*** ./node_modules/@angular/platform-browser/fesm2015/animations.mjs ***!
+  !*** ./node_modules/@angular/core/fesm2015/animations.mjs ***!
   \************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
@@ -51179,7 +51179,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ɵInjectableAnimationEngine": () => (/* binding */ InjectableAnimationEngine)
 /* harmony export */ });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ 318);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 318);
 /* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/animations */ 1631);
 /* harmony import */ var _angular_animations_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/animations/browser */ 289);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ 6362);
@@ -51898,7 +51898,7 @@ NoopAnimationsModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
 
 /***/ 318:
 /*!******************************************************************************!*\
-  !*** ./node_modules/@angular/platform-browser/fesm2015/platform-browser.mjs ***!
+  !*** ./node_modules/@angular/core/fesm2015/platform-browser.mjs ***!
   \******************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
@@ -51907,7 +51907,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ɵgetDOM": () => (/* reexport safe */ _angular_common__WEBPACK_IMPORTED_MODULE_0__["ɵgetDOM"]),
 /* harmony export */   "BrowserModule": () => (/* binding */ BrowserModule),
-/* harmony export */   "BrowserTransferStateModule": () => (/* binding */ BrowserTransferStateModule),
+/* harmony export */   "": () => (/* binding */ ),
 /* harmony export */   "By": () => (/* binding */ By),
 /* harmony export */   "DomSanitizer": () => (/* binding */ DomSanitizer),
 /* harmony export */   "EVENT_MANAGER_PLUGINS": () => (/* binding */ EVENT_MANAGER_PLUGINS),
@@ -53898,7 +53898,7 @@ function makeStateKey(key) {
  * on the client side.
  *
  * `TransferState` will be available as an injectable token. To use it import
- * `ServerTransferStateModule` on the server and `BrowserTransferStateModule` on the client.
+ * `ServerTransferStateModule` on the server and `` on the client.
  *
  * The values in the store are serialized/deserialized using JSON.stringify/JSON.parse. So only
  * boolean, number, string, null and non-class objects will be serialized and deserialized in a
@@ -54023,16 +54023,16 @@ function initTransferState(doc, appId) {
  */
 
 
-class BrowserTransferStateModule {}
+class  {}
 
-BrowserTransferStateModule.ɵfac = function BrowserTransferStateModule_Factory(t) {
-  return new (t || BrowserTransferStateModule)();
+.ɵfac = function _Factory(t) {
+  return new (t || )();
 };
 
-BrowserTransferStateModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({
-  type: BrowserTransferStateModule
+.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({
+  type: 
 });
-BrowserTransferStateModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({
+.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({
   providers: [{
     provide: TransferState,
     useFactory: initTransferState,
@@ -54041,7 +54041,7 @@ BrowserTransferStateModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTE
 });
 
 (function () {
-  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](BrowserTransferStateModule, [{
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](, [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.NgModule,
     args: [{
       providers: [{

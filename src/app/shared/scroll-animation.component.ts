@@ -1,7 +1,6 @@
 import { ElementRef, Injectable, AfterViewInit, OnDestroy, Output, ChangeDetectorRef, Directive } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 
-@Directive()
 @Injectable()
 export class ScrollAnimationComponent implements AfterViewInit, OnDestroy {
 
