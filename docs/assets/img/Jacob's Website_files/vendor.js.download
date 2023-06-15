@@ -12214,7 +12214,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "AsyncPipe": () => (/* binding */ AsyncPipe),
 /* harmony export */   "CommonModule": () => (/* binding */ CommonModule),
 /* harmony export */   "CurrencyPipe": () => (/* binding */ CurrencyPipe),
-/* harmony export */   "DATE_PIPE_DEFAULT_TIMEZONE": () => (/* binding */ DATE_PIPE_DEFAULT_TIMEZONE),
+/* harmony export */   "DATE_PIPE_DEFAULT_OPTIONS": () => (/* binding */ DATE_PIPE_DEFAULT_OPTIONS),
 /* harmony export */   "DOCUMENT": () => (/* binding */ DOCUMENT),
 /* harmony export */   "DatePipe": () => (/* binding */ DatePipe),
 /* harmony export */   "DecimalPipe": () => (/* binding */ DecimalPipe),
@@ -17816,7 +17816,7 @@ UpperCasePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__
  */
 
 
-const DATE_PIPE_DEFAULT_TIMEZONE = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('DATE_PIPE_DEFAULT_TIMEZONE'); // clang-format off
+const DATE_PIPE_DEFAULT_OPTIONS = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('DATE_PIPE_DEFAULT_OPTIONS'); // clang-format off
 
 /**
  * @ngModule CommonModule
@@ -17837,7 +17837,7 @@ const DATE_PIPE_DEFAULT_TIMEZONE = new _angular_core__WEBPACK_IMPORTED_MODULE_0_
  * See the [I18n guide](guide/i18n-common-format-data-locale) for more information.
  *
  * The time zone of the formatted value can be specified either by passing it in as the second
- * parameter of the pipe, or by setting the default through the `DATE_PIPE_DEFAULT_TIMEZONE`
+ * parameter of the pipe, or by setting the default through the `DATE_PIPE_DEFAULT_OPTIONS`
  * injection token. The value that is passed in as the second parameter takes precedence over
  * the one defined using the injection token.
  *
@@ -17998,7 +17998,7 @@ class DatePipe {
 }
 
 DatePipe.ɵfac = function DatePipe_Factory(t) {
-  return new (t || DatePipe)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.LOCALE_ID, 16), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](DATE_PIPE_DEFAULT_TIMEZONE, 24));
+  return new (t || DatePipe)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__.LOCALE_ID, 16), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](DATE_PIPE_DEFAULT_OPTIONS, 24));
 };
 
 DatePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({
@@ -18025,7 +18025,7 @@ DatePipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ�
       type: undefined,
       decorators: [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Inject,
-        args: [DATE_PIPE_DEFAULT_TIMEZONE]
+        args: [DATE_PIPE_DEFAULT_OPTIONS]
       }, {
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Optional
       }]
